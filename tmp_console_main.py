@@ -146,10 +146,10 @@ class HBNBCommand(cmd.Cmd):
             if value[0] == '"' and value[len(value) - 1] == '"':
                 fixed = value[1:-1]
                 fixed = fixed.replace("_", " ")
+            elif value.isnumeric() is True and value.isdigit() is True:
+                fixed = int(value)
             elif value.find(".") != -1 and len(value.split(".")) == 2:
                 fixed = float(value)
-            elif (value.strip('-')).isnumeric() is True and (value.strip('-')).isdigit() is True:
-                fixed = max(int(value), 0)
 
             return fixed
 

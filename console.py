@@ -32,7 +32,6 @@ class HBNBCommand(cmd.Cmd):
     err_msg = {
         "no_cls_name": "** class name missing **",
         "no_cls_exist": "** class doesn't exist **",
-        "no_args": "** No arguments specified **",
         "no_inst_found": "** no instance found **",
         "no_attr_name": "** attribute name missing **",
         "no_attr_value": "** value missing **"
@@ -118,9 +117,7 @@ class HBNBCommand(cmd.Cmd):
             if class_name not in self.classes:
                 self.print_err("no_cls_exist")
             else:
-                if len(args) == 1:
-                    self.print_err("no_args")
-                else:
+                if len(args) > 1:
                     i = 0
                     for pair in args:
                         if i > 0:
@@ -131,10 +128,10 @@ class HBNBCommand(cmd.Cmd):
                                 args_dict[temp[0]] = fixed_value
                         i = i + 1
 
-                    return {
-                        "class_name": args[0],
-                        "arguments": args_dict
-                    }
+                return {
+                    "class_name": args[0],
+                    "arguments": args_dict
+                }
 
         return None
 

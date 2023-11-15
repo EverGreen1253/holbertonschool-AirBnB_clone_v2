@@ -29,12 +29,14 @@ class BaseModel:
             if 'updated_at' not in values:
                 values['updated_at'] = datetime.now()
             else:
-                values['updated_at'] = datetime.strptime(values['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+                values['updated_at'] = datetime.strptime(values['updated_at'],
+                                                         '%Y-%m-%dT%H:%M:%S.%f')
 
             if 'created_at' not in values:
                 values['created_at'] = datetime.now()
             else:
-                values['created_at'] = datetime.strptime(values['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
+                values['created_at'] = datetime.strptime(values['created_at'],
+                                                         '%Y-%m-%dT%H:%M:%S.%f')
 
             if '__class__' in values:
                 del values['__class__']

@@ -138,20 +138,19 @@ class HBNBCommand(cmd.Cmd):
     def fix_the_value(self, key, value):
         """Fix the value in the key value pair if there are problems with it
         """
-        if value is not None:
-            # the values are all considered strings
-            # we need to typecast them before returning them
+        # the values are all considered strings
+        # we need to typecast them before returning them
 
-            fixed = None
-            if value[0] == '"' and value[len(value) - 1] == '"':
-                fixed = value[1:-1]
-                fixed = fixed.replace("_", " ")
-            elif value.find(".") != -1 and len(value.split(".")) == 2:
-                fixed = float(value)
-            elif (value.strip('-')).isnumeric() is True and (value.strip('-')).isdigit() is True:
-                fixed = max(int(value), 0)
+        fixed = None
+        if value[0] == '"' and value[len(value) - 1] == '"':
+            fixed = value[1:-1]
+            fixed = fixed.replace("_", " ")
+        elif value.find(".") != -1 and len(value.split(".")) == 2:
+            fixed = float(value)
+        elif (value.strip('-')).isnumeric() is True and (value.strip('-')).isdigit() is True:
+            fixed = max(int(value), 0)
 
-            return fixed
+        return fixed
 
     def do_quit(self, command):
         """ Method to exit the HBNB console"""

@@ -45,7 +45,7 @@ class DBStorage:
 
                 for row in rows:
                     key = str(cls + "." + row.id)
-                    output[key] = row
+                    output[key] = row.to_dict()
             else:
                 for class_name, namespace in self.__module_names.items():
                     module = importlib.import_module("models." + namespace)
@@ -54,7 +54,7 @@ class DBStorage:
 
                     for row in rows:
                         key = str(class_name + "." + row.id)
-                        output[key] = row
+                        output[key] = row.to_dict()
 
         return output
 

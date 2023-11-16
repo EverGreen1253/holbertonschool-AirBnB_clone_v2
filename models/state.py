@@ -2,7 +2,6 @@
 """ State Module for HBNB project """
 from os import getenv
 from models.base_model import BaseModel, Base
-from models.__init__ import storage
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String
 
@@ -25,6 +24,8 @@ class State(BaseModel, Base):
                 Returns:
                     List of Cities with state_id of current instance id
             """
+            from models.__init__ import storage
+
             data = storage.all()
             filtered = []
             for k, v in data.items():

@@ -1,14 +1,11 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
 from os import getenv
-from models.base_model import BaseModel
-from models import storage
-from sqlalchemy.ext.declarative import declarative_base
+from models.base_model import BaseModel, Base
+from models.__init__ import storage
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String
 
-
-Base = declarative_base()
 
 class State(BaseModel, Base):
     """Class to declare the State model or states database table

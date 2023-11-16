@@ -17,8 +17,6 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
-        from models import storage
-
         if not kwargs:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -53,7 +51,7 @@ class BaseModel:
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
-        from models import storage
+        from models.__init__ import storage
         self.updated_at = datetime.now()
         storage.new(self)
         storage.save()
@@ -76,6 +74,6 @@ class BaseModel:
     def delete(self):
         """Removes current instance reference from within objects and saves it
         """
-        from models import storage
+        from models.__init__ import storage
         storage.delete(self)
         storage.save()

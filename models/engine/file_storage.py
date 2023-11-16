@@ -15,7 +15,7 @@ class FileStorage:
         else:
             filtered = {}
             for k, v in self.__objects.items():
-                if k.split('.')[0] == cls:
+                if k.split('.')[0] == cls.__name__:
                     filtered[k] = str(v)
 
             return filtered
@@ -60,4 +60,5 @@ class FileStorage:
     def delete(self, obj=None):
         """Gets rid of the specified object"""
         if obj is not None:
-            self.__objects.pop(obj)
+            id_to_remove = str(type(obj).__name__) + "." + obj.id
+            self.__objects.pop(id_to_remove)

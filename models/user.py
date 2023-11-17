@@ -17,8 +17,8 @@ class User(BaseModel, Base):
 
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
-        first_name = Column(String(128), nullable=True, default=Null)
-        last_name = Column(String(128), nullable=True, default=Null)
+        first_name = Column(String(128), nullable=True, default=Null())
+        last_name = Column(String(128), nullable=True, default=Null())
         places = relationship("Place", back_populates="user", cascade="delete, delete-orphan")
     else:
         email = ''

@@ -2,7 +2,7 @@
 """This module defines a class User"""
 from os import getenv
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Null
 
 
 class User(BaseModel, Base):
@@ -16,8 +16,8 @@ class User(BaseModel, Base):
 
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
-        first_name = Column(String(128), nullable=True, default="NULL")
-        last_name = Column(String(128), nullable=True, default="NULL")
+        first_name = Column(String(128), nullable=True, default=Null)
+        last_name = Column(String(128), nullable=True, default=Null)
     else:
         email = ''
         password = ''

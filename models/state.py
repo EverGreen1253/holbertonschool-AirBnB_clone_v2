@@ -17,6 +17,8 @@ class State(BaseModel, Base):
         name = Column(String(128), nullable=False)
         cities = relationship("City", back_populates="state", cascade="delete, delete-orphan")
     else:
+        name = ""
+
         @property
         def cities(self):
             """FileStorage Getter that returns

@@ -27,6 +27,7 @@ class Place(BaseModel, Base):
         longitude = Column(Float, nullable=True, default=Null())
         user = relationship("User", back_populates="places")
         cities = relationship("City", back_populates="places")
+        reviews = relationship("Review", back_populates="place", cascade="delete, delete-orphan")
     else:
         city_id = ""
         user_id = ""
@@ -39,3 +40,20 @@ class Place(BaseModel, Base):
         latitude = 0.0
         longitude = 0.0
         amenity_ids = []
+
+        @property
+        def reviews(self):
+            """FileStorage Getter that returns
+
+                Returns:
+                    List of Reviews with place_id of current instance id
+            """
+            from models.__init__ import storage
+
+            data = storage.all()
+            filtered = []
+            for k, v in data.items():
+                if k.split('.')[0] == "Reviews" and self.id == v.id:
+                    filtered.append(v)
+
+            return filtered

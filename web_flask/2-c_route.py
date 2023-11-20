@@ -14,7 +14,7 @@ def hello_hbnb():
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """ Prints hbnb string """
-    return "HBNB!"
+    return "HBNB"
 
 @app.route("/c/<text>")
 def c_text(text):

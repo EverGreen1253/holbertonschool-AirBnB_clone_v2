@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Null, Table
 
 
-if getenv('HBNB_TYPE_STORAGE') is not None and getenv('HBNB_TYPE_STORAGE') == "db":
+if getenv('HBNB_TYPE_STORAGE') is None or getenv('HBNB_TYPE_STORAGE') == "db":
     place_amenity = Table(
         'place_amenity',
         Base.metadata,
@@ -93,5 +93,5 @@ class Place(BaseModel, Base):
                     Nothing
             """
 
-            if str(type(obj).__name__) is 'Amenity':
+            if str(type(obj).__name__) == 'Amenity':
                 self.amenity_ids.append(obj.id)

@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, ForeignKey, Table
 
 
-if getenv('HBNB_TYPE_STORAGE') is not None and getenv('HBNB_TYPE_STORAGE') == "db":
+if getenv('HBNB_TYPE_STORAGE') is None or getenv('HBNB_TYPE_STORAGE') == "db":
     place_amenity = Table(
         'place_amenity',
         Base.metadata,

@@ -11,10 +11,12 @@ def hello_hbnb():
     """ Prints hello hbnb string """
     return "Hello HBNB!"
 
+
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """ Prints hbnb string """
     return "HBNB"
+
 
 @app.route("/c/<text>")
 def c_text(text):

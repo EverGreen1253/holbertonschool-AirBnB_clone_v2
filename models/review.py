@@ -7,7 +7,7 @@ from sqlalchemy import Column, String, ForeignKey
 
 
 class Review(BaseModel, Base):
-    """ Review classto store review information """
+    """ Review class to store review information """
     storage_engine = getenv('HBNB_TYPE_STORAGE')
     if storage_engine is None:
         storage_engine = "db"

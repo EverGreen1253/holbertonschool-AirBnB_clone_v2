@@ -54,10 +54,10 @@ def num_templ(n):
 def oddeven_templ(n):
     """ Prints template to indicate if number passed in is odd or even """
     if n.isnumeric():
-        if int(n)%2 == 0:
+        if int(n) % 2 == 0:
             t = "even"
         else:
-            t = "odd"            
+            t = "odd"
         return render_template('6-number_odd_or_even.html', num=n, type=t)
     abort(404)
 

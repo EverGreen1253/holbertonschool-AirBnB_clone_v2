@@ -16,7 +16,8 @@ class FileStorage:
             filtered = {}
             for k, v in self.__objects.items():
                 if k.split('.')[0] == cls.__name__:
-                    filtered[k] = str(v)
+                    # filtered[k] = str(v)
+                    filtered[k] = v
 
             return filtered
 
@@ -62,3 +63,7 @@ class FileStorage:
         if obj is not None:
             id_to_remove = str(type(obj).__name__) + "." + obj.id
             self.__objects.pop(id_to_remove)
+
+    def close(self):
+        """call reload() method for deserializing the JSON file to objects"""
+        self.reload()

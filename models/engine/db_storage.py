@@ -47,13 +47,20 @@ class DBStorage:
         output = {}
         if self.__session is not None:
             if cls is not None:
-                module = importlib.import_module("models." + self.__module_names[cls])
-                class_ = getattr(module, cls)
-                rows = self.__session.query(class_).all()
+                # # Older version of code to satisfy AirBnb MySQL project
+                # module = importlib.import_module("models." + self.__module_names[cls])
+                # class_ = getattr(module, cls)
+                # rows = self.__session.query(class_).all()
 
+                # for row in rows:
+                #     key = str(cls + "." + row.id)
+                #     output[key] = row
+
+                # # Newer version of code to satisfy AirBnb Web framework version
+                rows = self.__session.query(cls).all()
                 for row in rows:
-                    key = str(cls + "." + row.id)
-                    output[key] = row
+                    key = str(cls.__name__ + "." + row.id)
+                    output[key] = row.to_dict()
             else:
                 for class_name, namespace in self.__module_names.items():
                     module = importlib.import_module("models." + namespace)
@@ -89,3 +96,7 @@ class DBStorage:
         session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """Close current session"""
+        self.__session.close()

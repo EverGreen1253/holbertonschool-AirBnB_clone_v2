@@ -6,8 +6,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
 from datetime import datetime
 
+storage_engine = getenv('HBNB_TYPE_STORAGE')
+if storage_engine is None:
+    storage_engine = "db"
 
-Base = declarative_base()
+Base = object
+if storage_engine == "db":
+    Base = declarative_base()
 
 class BaseModel:
     """A base class for all hbnb models"""

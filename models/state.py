@@ -29,11 +29,12 @@ class State(BaseModel, Base):
                     List of Cities with state_id of current instance id
             """
             from models.__init__ import storage
+            from models.city import City
 
-            data = storage.all()
+            data = storage.all(City)
             filtered = []
             for k, v in data.items():
-                if k.split('.')[0] == "City" and self.id == v.id:
+                if k.split('.')[0] == "City" and self.id == v.state_id:
                     filtered.append(v)
 
             return filtered

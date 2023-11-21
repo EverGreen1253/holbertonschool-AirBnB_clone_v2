@@ -3,7 +3,7 @@
 from os import getenv
 from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, String, Integer, Float, ForeignKey, Null, Table
+from sqlalchemy import Column, String, Integer, Float, ForeignKey, null, Table
 
 
 if getenv('HBNB_TYPE_STORAGE') is None or getenv('HBNB_TYPE_STORAGE') == "db":
@@ -32,8 +32,8 @@ class Place(BaseModel, Base):
         number_bathrooms = Column(Integer, nullable=False, default=0)
         max_guest = Column(Integer, nullable=False, default=0)
         price_by_night = Column(Integer, nullable=False, default=0)
-        latitude = Column(Float, nullable=True, default=Null())
-        longitude = Column(Float, nullable=True, default=Null())
+        latitude = Column(Float, nullable=True, default=null())
+        longitude = Column(Float, nullable=True, default=null())
         user = relationship("User", back_populates="places")
         cities = relationship("City", back_populates="places")
         reviews = relationship("Review", back_populates="place", cascade="delete, delete-orphan")

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Nameless Module for Flask """
-from flask import Flask, request
+from flask import Flask, request, abort
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -39,6 +39,7 @@ def numn_text(n):
     if n.isnumeric():
         is_num_txt = " is a number"
         return "{0}{1}".format(n, is_num_txt)
+    abort(404)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

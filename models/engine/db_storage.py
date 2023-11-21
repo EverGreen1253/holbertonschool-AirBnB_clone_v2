@@ -28,14 +28,19 @@ class DBStorage:
         "Review": "review"
     }
 
-    user = (getenv('HBNB_MYSQL_USER')
-            if getenv('HBNB_MYSQL_USER') is not None else "hbnb_dev")
-    pwd = (getenv('HBNB_MYSQL_PWD')
-        if getenv('HBNB_MYSQL_PWD') is not None else "hbnb_dev_pwd")
-    host = (getenv('HBNB_MYSQL_HOST')
-            if getenv('HBNB_MYSQL_HOST') is not None else "localhost")
-    db = (getenv('HBNB_MYSQL_DB')
-        if getenv('HBNB_MYSQL_DB') is not None else "hbnb_dev_db")
+    user = getenv('HBNB_MYSQL_USER')
+    pwd = getenv('HBNB_MYSQL_PWD')
+    host = getenv('HBNB_MYSQL_HOST')
+    db = getenv('HBNB_MYSQL_DB')
+
+    if getenv('HBNB_MYSQL_USER') is None:
+        user = "hbnb_dev"
+    if getenv('HBNB_MYSQL_PWD') is None:
+        pwd = "hbnb_dev_pwd"
+    if getenv('HBNB_MYSQL_HOST') is None:
+        host = "localhost"
+    if getenv('HBNB_MYSQL_DB') is None:
+        db = "hbnb_dev_db"
 
     def __init__(self):
         self.__engine = create_engine(
@@ -99,7 +104,8 @@ class DBStorage:
         """Recreate everything"""
         Base.metadata.create_all(self.__engine)
 
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(
+            bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
 

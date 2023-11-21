@@ -31,11 +31,11 @@ class DBStorage:
     user = (getenv('HBNB_MYSQL_USER')
             if getenv('HBNB_MYSQL_USER') is not None else "hbnb_dev")
     pwd = (getenv('HBNB_MYSQL_PWD')
-            if getenv('HBNB_MYSQL_PWD') is not None else "hbnb_dev_pwd")
+        if getenv('HBNB_MYSQL_PWD') is not None else "hbnb_dev_pwd")
     host = (getenv('HBNB_MYSQL_HOST')
             if getenv('HBNB_MYSQL_HOST') is not None else "localhost")
     db = (getenv('HBNB_MYSQL_DB')
-            if getenv('HBNB_MYSQL_DB') is not None else "hbnb_dev_db")
+        if getenv('HBNB_MYSQL_DB') is not None else "hbnb_dev_db")
 
     def __init__(self):
         self.__engine = create_engine(
@@ -53,7 +53,8 @@ class DBStorage:
         if self.__session is not None:
             if cls is not None:
                 # # Older version of code to satisfy AirBnb MySQL project
-                # module = importlib.import_module("models." + self.__module_names[cls])
+                # module = importlib.import_module("models." + 
+                #       self.__module_names[cls])
                 # class_ = getattr(module, cls)
                 # rows = self.__session.query(class_).all()
 
@@ -61,7 +62,7 @@ class DBStorage:
                 #     key = str(cls + "." + row.id)
                 #     output[key] = row
 
-                # # Newer version of code to satisfy AirBnb Web framework version
+                # # Newer ver of code to satisfy AirBnb Web framework
                 rows = self.__session.query(cls).all()
                 for row in rows:
                     key = str(cls.__name__ + "." + row.id)

@@ -28,14 +28,19 @@ class DBStorage:
         "Review": "review"
     }
 
-    user = getenv('HBNB_MYSQL_USER') if getenv('HBNB_MYSQL_USER') is not None else "hbnb_dev"
-    pwd =  getenv('HBNB_MYSQL_PWD') if getenv('HBNB_MYSQL_PWD') is not None else "hbnb_dev_pwd"
-    host = getenv('HBNB_MYSQL_HOST') if getenv('HBNB_MYSQL_HOST') is not None else "localhost"
-    db = getenv('HBNB_MYSQL_DB') if getenv('HBNB_MYSQL_DB') is not None else "hbnb_dev_db"
+    user = (getenv('HBNB_MYSQL_USER')
+        if getenv('HBNB_MYSQL_USER') is not None else "hbnb_dev")
+    pwd =  (getenv('HBNB_MYSQL_PWD')
+        if getenv('HBNB_MYSQL_PWD') is not None else "hbnb_dev_pwd")
+    host = (getenv('HBNB_MYSQL_HOST')
+        if getenv('HBNB_MYSQL_HOST') is not None else "localhost")
+    db = (getenv('HBNB_MYSQL_DB')
+        if getenv('HBNB_MYSQL_DB') is not None else "hbnb_dev_db")
 
     def __init__(self):
         self.__engine = create_engine(
-            'mysql+mysqldb://{}:{}@{}/{}'.format(self.user, self.pwd, self.host, self.db),
+            'mysql+mysqldb://{}:{}@{}/{}'.format(
+                self.user, self.pwd, self.host, self.db),
             pool_pre_ping=True
         )
 

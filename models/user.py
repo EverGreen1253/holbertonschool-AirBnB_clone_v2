@@ -3,7 +3,7 @@
 from os import getenv
 from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, String, Null
+from sqlalchemy import Column, String, null
 
 
 class User(BaseModel, Base):
@@ -17,8 +17,8 @@ class User(BaseModel, Base):
 
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
-        first_name = Column(String(128), nullable=True, default=Null())
-        last_name = Column(String(128), nullable=True, default=Null())
+        first_name = Column(String(128), nullable=True, default=null())
+        last_name = Column(String(128), nullable=True, default=null())
         places = relationship("Place", back_populates="user", cascade="delete, delete-orphan")
         reviews = relationship("Review", back_populates="user", cascade="delete, delete-orphan")
     else:

@@ -111,9 +111,4 @@ class DBStorage:
 
     def close(self):
         """Close current session"""
-        self.__session.remove()
-
-        session_factory = sessionmaker(
-            bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(session_factory)
-        self.__session = Session()
+        self.__session.reload()

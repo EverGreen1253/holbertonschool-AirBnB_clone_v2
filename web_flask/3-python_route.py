@@ -18,14 +18,15 @@ def hbnb():
     return "HBNB"
 
 
-@app.route("/c/<text>")
+@app.route("/c/<text>", strict_slashes=False)
 def c_text(text):
     """ Prints text passed in """
     return "C {0}".format(text.replace("_", " "))
 
 
-@app.route("/python/<text>")
-def python_text(text):
+@app.route("/python", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def python_text(text = "is_cool"):
     """ Prints text passed in """
     return "Python {0}".format(text.replace("_", " "))
 

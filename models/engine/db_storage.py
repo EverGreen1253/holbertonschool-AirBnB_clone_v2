@@ -58,7 +58,7 @@ class DBStorage:
         if self.__session is not None:
             if cls is not None:
                 # # Older version of code to satisfy AirBnb MySQL project
-                # module = importlib.import_module("models." + 
+                # module = importlib.import_module("models." +
                 #       self.__module_names[cls])
                 # class_ = getattr(module, cls)
                 # rows = self.__session.query(class_).all()
@@ -111,4 +111,4 @@ class DBStorage:
 
     def close(self):
         """Close current session"""
-        self.__session.close()
+        self.__session.remove()

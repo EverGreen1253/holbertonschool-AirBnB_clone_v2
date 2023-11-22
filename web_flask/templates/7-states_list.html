@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+        <UL>
+
+            {% for key, value in states_list.items() %}
+                <LI>{{key.split(".")[1]}}: <B>{{value['name']}}</B></LI>
+            {% endfor %}
+
+        </UL>
+    </BODY>
+</HTML>

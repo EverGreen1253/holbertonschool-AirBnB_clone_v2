@@ -6,6 +6,7 @@ from models.state import State
 
 app = Flask(__name__)
 
+
 @app.route("/states_list", strict_slashes=False)
 def states():
     """ Print out HTML lisitng out all States """
@@ -17,6 +18,7 @@ def states():
     #     print("---")
 
     return render_template('7-states_list.html', states_list=states_list)
+
 
 @app.teardown_appcontext
 def close_db(error):

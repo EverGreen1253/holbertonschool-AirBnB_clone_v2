@@ -10,14 +10,19 @@ app = Flask(__name__)
 @app.route("/states_list", strict_slashes=False)
 def states():
     """ Print out HTML lisitng out all States """
+    unsorted_states = {}
     states_list = storage.all(State)
-
-    # for key, value in states_list.items():
+    for key, value in states_list.items():
+        unsorted_states[value['name']] = {
+            'id': value['id'],
+            'name': value['name']
+        }
+    sorted_states = dict(sorted(unsorted_states.items()))
+    # for key in sorted_states:
     #     print(key)
-    #     print(value['name'])
-    #     print("---")
+    #     print(sorted_states[key]['id'])
 
-    return render_template('7-states_list.html', states_list=states_list)
+    return render_template('7-states_list.html', states_list=sorted_states)
 
 
 @app.teardown_appcontext

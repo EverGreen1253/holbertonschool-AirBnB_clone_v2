@@ -7,8 +7,8 @@
         <H1>States</H1>
         <UL>
 
-            {% for key, value in states_list.items() %}
-                <LI>{{key.split(".")[1]}}: <B>{{value['name']}}</B></LI>
+            {% for key in states_list %}
+                <LI>{{states_list[key]['id']}}: <B>{{key}}</B></LI>
             {% endfor %}
 
         </UL>

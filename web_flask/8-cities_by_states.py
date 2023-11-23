@@ -6,6 +6,7 @@ from models.state import State
 from models.city import City
 
 app = Flask(__name__)
+app.config['DEBUG'] = False
 
 
 @app.route("/cities_by_states", strict_slashes=False)

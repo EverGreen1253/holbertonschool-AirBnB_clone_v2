@@ -7,10 +7,10 @@
         <H1>States</H1>
         <UL>
 
-            {% for key in states_list %}
-                <LI>{{states_list[key]['id']}}: <B>{{key}}</B></LI>
-            {% endfor %}
+            {% for item in states_list %}
+                <LI>{{item['id']}}: <B>{{item['name']}}</B></LI>
 
+            {% endfor %}
         </UL>
     </BODY>
 </HTML>

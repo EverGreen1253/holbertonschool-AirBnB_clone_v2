@@ -71,7 +71,7 @@ class DBStorage:
                 rows = self.__session.query(cls).all()
                 for row in rows:
                     key = str(cls.__name__ + "." + row.id)
-                    output[key] = row.to_dict()
+                    output[key] = row
             else:
                 for class_name, namespace in self.__module_names.items():
                     module = importlib.import_module("models." + namespace)

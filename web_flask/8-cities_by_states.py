@@ -20,7 +20,7 @@ def cities_states():
         item['state'] = state
 
         # print(state.id)
-        # print(state.name)
+        print(state.name)
 
         cities = state.cities
         sorted_cities = sorted(cities, key=lambda c: c.name)

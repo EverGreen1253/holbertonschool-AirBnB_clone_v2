@@ -8,9 +8,8 @@
         <UL>
 
             {% for item in data %}
-            <LI>{{item['state']['id']}}: <B>{{item['state']['name']}}</B></LI>
+            <LI>{{item['state']['id']}}: <B>{{item['state']['name']}}</B>
 
-            {% if item['cities']|length > 0 %}
                 <UL>
 
                     {% for city in item['cities'] %}
@@ -18,9 +17,9 @@
 
                     {% endfor %}
                 </UL>
-            {% endif %}
-            {% endfor %}
+
             </LI>
+            {% endfor %}
 
         </UL>
     </BODY>

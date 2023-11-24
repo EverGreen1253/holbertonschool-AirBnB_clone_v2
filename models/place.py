@@ -10,10 +10,13 @@ if getenv('HBNB_TYPE_STORAGE') is None or getenv('HBNB_TYPE_STORAGE') == "db":
     place_amenity = Table(
         'place_amenity',
         Base.metadata,
-        Column('place_id', String(60), ForeignKey('places.id'), nullable=False, primary_key=True),
-        Column('amenity_id', String(60), ForeignKey('amenities.id'), nullable=False, primary_key=True),
+        Column('place_id', String(60), ForeignKey('places.id'),
+               nullable=False, primary_key=True),
+        Column('amenity_id', String(60), ForeignKey('amenities.id'),
+               nullable=False, primary_key=True),
         extend_existing=True
     )
+
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -36,8 +39,10 @@ class Place(BaseModel, Base):
         longitude = Column(Float, nullable=True, default=null())
         user = relationship("User", back_populates="places")
         cities = relationship("City", back_populates="places")
-        reviews = relationship("Review", back_populates="place", cascade="delete, delete-orphan")
-        amenities = relationship("Amenity", secondary=place_amenity, viewonly=False, overlaps="place_amenities")
+        reviews = relationship("Review", back_populates="place",
+                               cascade="delete, delete-orphan")
+        amenities = relationship("Amenity", secondary=place_amenity,
+                                 viewonly=False, overlaps="place_amenities")
     else:
         city_id = ""
         user_id = ""
@@ -73,7 +78,7 @@ class Place(BaseModel, Base):
             """FileStorage Getter that returns
 
                 Returns:
-                    List of Amenities linked to this Place whose ids are in amenity_ids
+                    List of Amenities whose ids are in amenity_ids
             """
             from models.__init__ import storage
 

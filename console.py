@@ -147,7 +147,8 @@ class HBNBCommand(cmd.Cmd):
             fixed = fixed.replace("_", " ")
         elif value.find(".") != -1 and len(value.split(".")) == 2:
             fixed = float(value)
-        elif (value.strip('-')).isnumeric() is True and (value.strip('-')).isdigit() is True:
+        elif ((value.strip('-')).isnumeric() is True
+              and (value.strip('-')).isdigit() is True):
             fixed = max(int(value), 0)
 
         return fixed
@@ -178,7 +179,8 @@ class HBNBCommand(cmd.Cmd):
 
         output = self.arguments_specified(args)
         if output is not None:
-            new_instance = HBNBCommand.classes[output["class_name"]](**output["arguments"])
+            new_instance = HBNBCommand.classes[output["class_name"]](
+                **output["arguments"])
 
             new_instance.save()
             print(new_instance.id)
@@ -244,7 +246,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del storage.all()[key]
             storage.save()
         except KeyError:
             print("** no instance found **")
@@ -376,6 +378,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

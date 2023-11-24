@@ -16,8 +16,10 @@ class Review(BaseModel, Base):
         __tablename__ = 'reviews'
 
         text = Column(String(1024), nullable=False)
-        place_id = Column(String(60), ForeignKey('places.id'), nullable=False, default="")
-        user_id = Column(String(60), ForeignKey('users.id'), nullable=False, default="")
+        place_id = Column(String(60), ForeignKey('places.id'),
+                          nullable=False, default="")
+        user_id = Column(String(60), ForeignKey('users.id'),
+                         nullable=False, default="")
         user = relationship("User", back_populates="reviews")
         place = relationship("Place", back_populates="reviews")
     else:

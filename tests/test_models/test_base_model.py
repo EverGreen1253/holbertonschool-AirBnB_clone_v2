@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ """
 from models.base_model import BaseModel
+from models.__init__ import storage
+from os import getenv
 import unittest
 import datetime
 from uuid import UUID
@@ -8,8 +10,10 @@ import json
 import os
 
 
+storage_engine = getenv('HBNB_TYPE_STORAGE')
+
 class test_basemodel(unittest.TestCase):
-    """ """
+    """ Class for testing Base Model """
 
     def __init__(self, *args, **kwargs):
         """ """
@@ -47,8 +51,9 @@ class test_basemodel(unittest.TestCase):
         with self.assertRaises(TypeError):
             new = BaseModel(**copy)
 
-    def test_save(self):
-        """ Testing save """
+    @unittest.skipIf(storage_engine == "db", "not using FileStorage")
+    def test_fs_save(self):
+        """ Testing File save """
         i = self.value()
         i.save()
         key = self.name + "." + i.id

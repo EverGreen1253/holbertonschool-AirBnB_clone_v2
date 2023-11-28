@@ -4,10 +4,13 @@ import unittest
 from models.base_model import BaseModel
 from models.engine.db_storage import DBStorage
 import os
+from os import getenv
 
 
 storage = DBStorage()
+storage_engine = getenv('HBNB_TYPE_STORAGE')
 
+@unittest.skipIf(storage_engine == "fs", "not using DBStorage")
 class test_dbStorage(unittest.TestCase):
     """ Class to test the db storage method """
 

@@ -7,6 +7,10 @@ from models.state import State
 class test_state(test_basemodel):
     """ """
 
+    attribs = {
+        "name" : "Gotham"
+    }    
+
     def __init__(self, *args, **kwargs):
         """ """
         super().__init__(*args, **kwargs)
@@ -15,7 +19,7 @@ class test_state(test_basemodel):
 
     def test_name3(self):
         """ """
-        new = self.value()
+        new = self.value(**self.attribs)
         self.assertEqual(type(new.name), str)
 
     def test_state_str(self):

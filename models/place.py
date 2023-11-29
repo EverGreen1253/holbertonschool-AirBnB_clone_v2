@@ -6,18 +6,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, null, Table
 
 
-if getenv('HBNB_TYPE_STORAGE') is None or getenv('HBNB_TYPE_STORAGE') == "db":
-    place_amenity = Table(
-        'place_amenity',
-        Base.metadata,
-        Column('place_id', String(60), ForeignKey('places.id'),
-               nullable=False, primary_key=True),
-        Column('amenity_id', String(60), ForeignKey('amenities.id'),
-               nullable=False, primary_key=True),
-        extend_existing=True
-    )
-
-
 class Place(BaseModel, Base):
     """ A place to stay """
     storage_engine = getenv('HBNB_TYPE_STORAGE')
@@ -26,6 +14,16 @@ class Place(BaseModel, Base):
 
     if storage_engine == "db":
         __tablename__ = 'places'
+
+        place_amenity = Table(
+            'place_amenity',
+            Base.metadata,
+            Column('place_id', String(60), ForeignKey('places.id'),
+                nullable=False, primary_key=True),
+            Column('amenity_id', String(60), ForeignKey('amenities.id'),
+                nullable=False, primary_key=True),
+            extend_existing=True
+        )
 
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
         user_id = Column(String(60), ForeignKey('users.id'), nullable=False)

@@ -6,7 +6,7 @@ from models.state import State
 from models.city import City
 
 app = Flask(__name__)
-# app.config['DEBUG'] = False
+app.config['DEBUG'] = False
 app.config['FLASK_DEBUG'] = False
 
 

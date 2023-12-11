@@ -9,7 +9,7 @@ class test_state(test_basemodel):
 
     attribs = {
         "name" : "Gotham"
-    }    
+    }
 
     def __init__(self, *args, **kwargs):
         """ """

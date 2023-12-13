@@ -5,7 +5,7 @@ from models.__init__ import storage
 from models.state import State
 
 app = Flask(__name__)
-# app.config['DEBUG'] = False
+app.config['DEBUG'] = False
 app.config['FLASK_DEBUG'] = False
 
 
@@ -26,4 +26,4 @@ def close_db(error):
     storage.close()
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)

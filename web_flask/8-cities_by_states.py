@@ -1,4 +1,4 @@
-#!/usr/bin/python3 FLASK_DEBUG=False
+#!/usr/bin/python3
 """ Nameless Module for Flask """
 from flask import Flask, render_template
 from models.__init__ import storage
@@ -6,8 +6,6 @@ from models.state import State
 from models.city import City
 
 app = Flask(__name__)
-# app.config['DEBUG'] = False
-# app.config['FLASK_DEBUG'] = False
 
 
 @app.route("/cities_by_states", strict_slashes=False)
@@ -45,4 +43,4 @@ def close_db(error):
     storage.close()
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)
